@@ -21,7 +21,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor: none !important;
+}
+
+@media (pointer: fine) {
+  * { cursor: none !important; }
 }
 
 html {
@@ -43,6 +46,10 @@ body {
 
 body.cursor-hover .cursor-dot { width: 0; height: 0; }
 body.cursor-hover .cursor-ring { width: 64px; height: 64px; background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.8); box-shadow: 0 0 30px rgba(16, 185, 129, 0.4); }
+
+@media (pointer: coarse) {
+  .cursor-dot, .cursor-ring { display: none !important; }
+}
 
 
 /* === THE $30K AESTHETIC BACKGROUND === */
@@ -190,6 +197,14 @@ h1, h2, h3 { line-height: 1.1; font-weight: 600; text-shadow: 0 0 40px rgba(255,
 }
 .nav-links a:hover { color: white; }
 
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-container { padding: 0 1rem; }
+  .glass-nav { 
+    width: calc(100% - 1rem);
+  }
+}
+
 /* === PREMIUM BUTTON === */
 .premium-btn {
   position: relative;
@@ -334,17 +349,24 @@ h1, h2, h3 { line-height: 1.1; font-weight: 600; text-shadow: 0 0 40px rgba(255,
 }
 
 .hero-title {
-  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-size: clamp(2.5rem, 8vw, 6rem);
   letter-spacing: -0.04em;
   margin-bottom: 1.5rem;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 .hero-subtitle {
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-size: clamp(1rem, 4vw, 1.4rem);
   color: var(--text-gray);
   max-width: 700px;
-  margin: 0 auto 3rem;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
+}
+
+@media (max-width: 650px) {
+  .hero { padding-top: 120px; }
+  .premium-btn.large { width: 100%; margin-bottom: 0.5rem; text-align: center; }
+  .hero-actions { flex-direction: column; gap: 0.5rem; padding: 0 1rem; width: 100%; }
 }
 
 .hero-actions {
@@ -372,7 +394,7 @@ h1, h2, h3 { line-height: 1.1; font-weight: 600; text-shadow: 0 0 40px rgba(255,
 .section { padding: 8rem 0; }
 .pt-0 { padding-top: 0; }
 .section-heading { margin-bottom: 5rem; }
-.section-heading h2 { font-size: clamp(3rem, 5vw, 4.5rem); letter-spacing: -0.05em; margin-bottom: 1rem; }
+.section-heading h2 { font-size: clamp(2.2rem, 5vw, 4.5rem); letter-spacing: -0.05em; margin-bottom: 1rem; }
 .subtitle { font-size: 1.25rem; color: var(--text-gray); }
 
 .bento-grid {
@@ -393,8 +415,10 @@ h1, h2, h3 { line-height: 1.1; font-weight: 600; text-shadow: 0 0 40px rgba(255,
   .span-2 { grid-column: span 2 !important; }
 }
 @media (max-width: 650px) {
-  .bento-grid { grid-template-columns: 1fr !important; }
-  .span-2, .span-full { grid-column: span 1 !important; }
+  .bento-grid { grid-template-columns: 1fr !important; gap: 1rem; }
+  .span-2, .span-full, .span-row-2 { grid-column: span 1 !important; grid-row: auto !important; }
+  .card-content { padding: 1.5rem !important; }
+  .horizontal, .horizontal-sm { gap: 1.5rem !important; }
 }
 
 .span-2 { grid-column: span 2; }
@@ -608,7 +632,12 @@ h1, h2, h3 { line-height: 1.1; font-weight: 600; text-shadow: 0 0 40px rgba(255,
 /* === CTA === */
 .cta-section { padding: 12rem 0; position: relative; }
 .cta-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 60%); z-index: -1; filter: blur(50px); pointer-events: none;}
-.huge { font-size: clamp(4rem, 8vw, 7rem); letter-spacing: -0.05em; line-height: 1; }
+.huge { font-size: clamp(2.5rem, 8vw, 7rem); letter-spacing: -0.05em; line-height: 1.1; }
+
+@media (max-width: 650px) {
+  .cta-section .premium-btn.massive { width: 100%; margin-bottom: 0.5rem; text-align: center; }
+  .cta-section > div > div.mt-8 { flex-direction: column; gap: 0.5rem; padding: 0 1rem; }
+}
 
 /* === MASSIVE STICKY SCROLL FOUNDER FEATURE === */
 .scroll-pin-wrapper {
@@ -716,16 +745,21 @@ h1, h2, h3 { line-height: 1.1; font-weight: 600; text-shadow: 0 0 40px rgba(255,
 }
 
 @media (max-width: 900px) {
-  .horizontal-founder { flex-direction: column; }
+  .horizontal-founder { flex-direction: column; max-height: 85vh; overflow-y: auto; }
   .founder-image-col, .founder-bio-col { width: 100%; border-right: none; }
-  .founder-image-col { border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 2rem; }
-  .founder-bio-col { padding: 2rem; }
-  .img-frame { max-height: 300px; aspect-ratio: auto; }
+  .founder-image-col { border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1rem; }
+  .img-frame { max-height: 150px; aspect-ratio: auto; }
+  .founder-bio-col { padding: 1.5rem; }
+  .text-4xl { font-size: 2rem; }
+  .bio-text-wrapper { min-height: 150px; }
 }
 
 /* === FOOTER === */
 footer { border-top: 1px solid var(--glass-border); padding: 3rem 0; background: #000; }
-.split { display: flex; justify-content: space-between; align-items: center; }
+.split { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; text-align: center; }
+@media (max-width: 650px) {
+  .split { flex-direction: column; justify-content: center; }
+}
 .footer-brand .logo { font-size: 1.5rem; }
 
 /* Luxury Real Estate Styles */
