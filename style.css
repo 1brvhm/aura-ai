@@ -73,8 +73,24 @@ body.cursor-hover .cursor-ring { width: 64px; height: 64px; background: rgba(16,
   background-position: center;
 }
 
-/* Removed blobs and grids for absolute premium consulting minimalism */
-.color-blob, .grid-lines, .blob-1, .blob-2, .blob-3, .blob-4 { display: none; }
+/* The $100M Liquid Luxury Aura Mesh */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  animation: floatOrb 25s ease-in-out infinite alternate;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.orb-emerald { width: 900px; height: 900px; background: rgba(5, 150, 105, 0.2); top: -10%; left: -10%; }
+.orb-gold { width: 700px; height: 700px; background: rgba(197, 179, 130, 0.2); bottom: -10%; right: -10%; animation-delay: -5s; }
+.orb-dark { width: 1000px; height: 1000px; background: #0A0A0A; top: 30%; left: 40%; animation-delay: -10s; z-index: 1;}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(10vw, 15vh) scale(1.1); }
+  100% { transform: translate(-10vw, 20vh) scale(0.9); }
+}
 
 /* === TYPOGRAPHY & LAYOUT === */
 .container {
@@ -377,7 +393,23 @@ h1, h2, h3 { line-height: 1.1; font-weight: 600; text-shadow: 0 0 40px rgba(255,
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.glass-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(197, 179, 130, 0.08) 50%, transparent 100%);
+  background-size: 200% 200%;
+  animation: sweepGlow 8s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes sweepGlow {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 .glass-card::before { display: none; }
@@ -538,12 +570,13 @@ h1, h2, h3 { line-height: 1.1; font-weight: 600; text-shadow: 0 0 40px rgba(255,
 .fade-scroll { 
   opacity: 0; 
   will-change: transform, opacity; 
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease;
 }
 
 /* === INITIAL PAGE LOAD ANIMATIONS === */
 .load-fade-up {
   opacity: 0;
-  animation: loadFadeUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: loadFadeUp 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 @keyframes loadFadeUp {
