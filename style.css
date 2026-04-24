@@ -710,6 +710,7 @@ h1, h2, h3 { line-height: 1.1; font-weight: 600; text-shadow: 0 0 40px rgba(255,
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 15%;
   opacity: 0; /* Updated via JS */
   transform: scale(1.1); /* Parallax starting point */
 }
@@ -752,8 +753,8 @@ h1, h2, h3 { line-height: 1.1; font-weight: 600; text-shadow: 0 0 40px rgba(255,
   .sticky-content { position: relative !important; height: auto !important; overflow: visible !important; }
   .horizontal-founder { flex-direction: column; max-height: none; overflow-y: visible; }
   .founder-image-col, .founder-bio-col { width: 100%; border-right: none; }
-  .founder-image-col { border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1rem; display: flex; justify-content: center; }
-  .img-frame { max-height: 250px; aspect-ratio: 4/5; width: auto; }
+  .founder-image-col { border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1rem; display: flex; justify-content: center; align-items: center; }
+  .img-frame { height: 260px; width: 200px; max-height: none; aspect-ratio: auto; margin: 0 auto; display: block; }
   .founder-bio-col { padding: 2rem 1.5rem; }
   .text-4xl { font-size: 2rem; }
   .bio-text-wrapper { min-height: auto; }
