@@ -61,49 +61,57 @@ document.addEventListener("DOMContentLoaded", () => {
   if (scrollWrapper && bioText) {
     const fullText = bioText.getAttribute('data-text');
     
-    mattImg.style.opacity = 0;
-    mattImg.style.transform = `scale(1.1)`;
-    bioText.textContent = "";
-    typeCursor.style.opacity = 0;
-    
-    window.addEventListener('scroll', () => {
-      const rect = scrollWrapper.getBoundingClientRect();
-      const wrapperTop = rect.top; 
+    // Check if mobile. If mobile, skip the complex animation and show all instantly.
+    if (window.innerWidth <= 900) {
+      mattImg.style.opacity = 1;
+      mattImg.style.transform = `scale(1)`;
+      bioText.textContent = fullText;
+      typeCursor.style.opacity = 0;
+    } else {
+      mattImg.style.opacity = 0;
+      mattImg.style.transform = `scale(1.1)`;
+      bioText.textContent = "";
+      typeCursor.style.opacity = 0;
       
-      const scrollableDistance = rect.height - window.innerHeight; 
-      
-      if (wrapperTop <= 0 && wrapperTop >= -scrollableDistance) {
-        const progress = Math.max(0, Math.min(1, -wrapperTop / scrollableDistance));
+      window.addEventListener('scroll', () => {
+        const rect = scrollWrapper.getBoundingClientRect();
+        const wrapperTop = rect.top; 
         
-        const imgOpacity = Math.min(1, progress / 0.15);
-        mattImg.style.opacity = imgOpacity;
+        const scrollableDistance = rect.height - window.innerHeight; 
         
-        mattImg.style.transform = `scale(${1.1 - (imgOpacity * 0.1)})`;
-
-        if (progress > 0.15) {
-          typeCursor.style.opacity = 1;
-          const textProgress = Math.min(1, Math.max(0, (progress - 0.15) / 0.75));
-          const charsToShow = Math.floor(textProgress * fullText.length);
-          bioText.textContent = fullText.substring(0, charsToShow);
+        if (wrapperTop <= 0 && wrapperTop >= -scrollableDistance) {
+          const progress = Math.max(0, Math.min(1, -wrapperTop / scrollableDistance));
           
-          if (textProgress >= 1) typeCursor.style.opacity = 0; 
+          const imgOpacity = Math.min(1, progress / 0.15);
+          mattImg.style.opacity = imgOpacity;
+          
+          mattImg.style.transform = `scale(${1.1 - (imgOpacity * 0.1)})`;
+
+          if (progress > 0.15) {
+            typeCursor.style.opacity = 1;
+            const textProgress = Math.min(1, Math.max(0, (progress - 0.15) / 0.75));
+            const charsToShow = Math.floor(textProgress * fullText.length);
+            bioText.textContent = fullText.substring(0, charsToShow);
+            
+            if (textProgress >= 1) typeCursor.style.opacity = 0; 
+          } else {
+            bioText.textContent = "";
+            typeCursor.style.opacity = 0;
+          }
+          
+        } else if (wrapperTop < -scrollableDistance) {
+          mattImg.style.opacity = 1;
+          mattImg.style.transform = `scale(1)`;
+          bioText.textContent = fullText;
+          typeCursor.style.opacity = 0;
         } else {
+          mattImg.style.opacity = 0;
+          mattImg.style.transform = `scale(1.1)`;
           bioText.textContent = "";
           typeCursor.style.opacity = 0;
         }
-        
-      } else if (wrapperTop < -scrollableDistance) {
-        mattImg.style.opacity = 1;
-        mattImg.style.transform = `scale(1)`;
-        bioText.textContent = fullText;
-        typeCursor.style.opacity = 0;
-      } else {
-        mattImg.style.opacity = 0;
-        mattImg.style.transform = `scale(1.1)`;
-        bioText.textContent = "";
-        typeCursor.style.opacity = 0;
-      }
-    });
+      });
+    }
   }
 
   // 3. Fixed Reveal Text Logic & Scrubbable Animation Registration

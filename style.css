@@ -38,6 +38,8 @@ html {
 body {
   position: relative;
   line-height: 1.6;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* === CUSTOM CURSOR === */
@@ -71,7 +73,6 @@ body.cursor-hover .cursor-ring { width: 64px; height: 64px; background: rgba(16,
   background-image: linear-gradient(rgba(3, 15, 10, 0.8), rgba(3, 15, 10, 0.85)), url('luxury_bg.png');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
 }
 
 .color-blob {
@@ -167,6 +168,7 @@ h1, h2, h3 { line-height: 1.1; font-weight: 600; text-shadow: 0 0 40px rgba(255,
   display: flex;
   align-items: center;
   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  max-width: 95vw;
 }
 
 .nav-container {
@@ -199,7 +201,8 @@ h1, h2, h3 { line-height: 1.1; font-weight: 600; text-shadow: 0 0 40px rgba(255,
 
 @media (max-width: 768px) {
   .nav-links { display: none; }
-  .nav-container { padding: 0 1rem; }
+  .nav-cta { display: none !important; }
+  .nav-container { padding: 0 1rem; justify-content: center; }
   .glass-nav { 
     width: calc(100% - 1rem);
   }
@@ -745,13 +748,15 @@ h1, h2, h3 { line-height: 1.1; font-weight: 600; text-shadow: 0 0 40px rgba(255,
 }
 
 @media (max-width: 900px) {
-  .horizontal-founder { flex-direction: column; max-height: 85vh; overflow-y: auto; }
+  .scroll-pin-wrapper { height: auto !important; margin-bottom: 2rem; }
+  .sticky-content { position: relative !important; height: auto !important; overflow: visible !important; }
+  .horizontal-founder { flex-direction: column; max-height: none; overflow-y: visible; }
   .founder-image-col, .founder-bio-col { width: 100%; border-right: none; }
-  .founder-image-col { border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1rem; }
-  .img-frame { max-height: 150px; aspect-ratio: auto; }
-  .founder-bio-col { padding: 1.5rem; }
+  .founder-image-col { border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1rem; display: flex; justify-content: center; }
+  .img-frame { max-height: 250px; aspect-ratio: 4/5; width: auto; }
+  .founder-bio-col { padding: 2rem 1.5rem; }
   .text-4xl { font-size: 2rem; }
-  .bio-text-wrapper { min-height: 150px; }
+  .bio-text-wrapper { min-height: auto; }
 }
 
 /* === FOOTER === */
