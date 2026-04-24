@@ -89,7 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (progress > 0.15) {
             typeCursor.style.opacity = 1;
-            const textProgress = Math.min(1, Math.max(0, (progress - 0.15) / 0.75));
+            // Finish typing by 50% scroll progress so user has time to read
+            const textProgress = Math.min(1, Math.max(0, (progress - 0.15) / 0.35));
             const charsToShow = Math.floor(textProgress * fullText.length);
             bioText.textContent = fullText.substring(0, charsToShow);
             
