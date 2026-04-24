@@ -76,15 +76,14 @@ body.cursor-hover .cursor-ring { width: 64px; height: 64px; background: rgba(16,
 /* The $100M Liquid Luxury Aura Mesh */
 .orb {
   position: absolute;
-  filter: blur(140px);
+  filter: blur(160px);
   pointer-events: none;
-  opacity: 0.8;
-  mix-blend-mode: screen; 
+  opacity: 0.2; /* Heavily subdued stealth-wealth lighting */
 }
-.orb-1 { width: 800px; height: 800px; background: rgba(5, 150, 105, 0.5); top: -10%; left: -10%; animation: floatOrb1 20s infinite alternate ease-in-out; }
-.orb-2 { width: 700px; height: 700px; background: rgba(197, 179, 130, 0.4); top: 10%; right: -10%; animation: floatOrb2 25s infinite alternate ease-in-out; }
-.orb-3 { width: 900px; height: 900px; background: rgba(3, 80, 50, 0.6); bottom: -20%; left: 20%; animation: floatOrb3 22s infinite alternate ease-in-out; }
-.orb-4 { width: 600px; height: 600px; background: rgba(212, 175, 55, 0.25); bottom: 10%; right: 20%; animation: floatOrb4 18s infinite alternate ease-in-out; }
+.orb-1 { width: 800px; height: 800px; background: rgba(5, 150, 105, 0.3); top: -10%; left: -10%; animation: floatOrb1 20s infinite alternate ease-in-out; }
+.orb-2 { width: 700px; height: 700px; background: rgba(197, 179, 130, 0.2); top: 10%; right: -10%; animation: floatOrb2 25s infinite alternate ease-in-out; }
+.orb-3 { width: 900px; height: 900px; background: rgba(3, 80, 50, 0.3); bottom: -20%; left: 20%; animation: floatOrb3 22s infinite alternate ease-in-out; }
+.orb-4 { width: 600px; height: 600px; background: rgba(212, 175, 55, 0.15); bottom: 10%; right: 20%; animation: floatOrb4 18s infinite alternate ease-in-out; }
 
 @keyframes floatOrb1 {
   0% { transform: translate(0, 0) scale(1) rotate(0deg); border-radius: 50%; }
